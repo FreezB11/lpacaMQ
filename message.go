@@ -2,6 +2,7 @@ package lpacamq
 
 import (
 	"time"
+	"sync"
 )
 
 // single message rep
@@ -10,6 +11,8 @@ type Message struct {
 	Topic	string
 	Payload	[]byte
 	Timestamp time.Time
+	RetryCount int
+	mu		sync.RWMutex
 }
 
 // NewMessage creates a new message with the given topic and payload
